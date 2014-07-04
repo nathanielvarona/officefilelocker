@@ -8,7 +8,7 @@ try:
 except Exception:
     APACHE_POI_JAR_PATH = os.environ["APACHE_POI_JAR_PATH"]
 
-for root, dirs, files in os.walk(APACHE_POI_PATH):
+for root, dirs, files in os.walk(APACHE_POI_JAR_PATH):
     for name in files:
         if name.endswith(".jar"):
             sys.path.append(os.path.join(root, name))
