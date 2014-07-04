@@ -3,7 +3,7 @@ import os, sys, ConfigParser
 
 try:
     config = ConfigParser.ConfigParser()
-    config.read("apache.cfg")
+    config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), "apache.cfg"))
     APACHE_POI_JAR_PATH = config.get("POI", "path")
 except Exception:
     APACHE_POI_JAR_PATH = os.environ["APACHE_POI_JAR_PATH"]
