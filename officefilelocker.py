@@ -28,6 +28,7 @@ hssf_supported_mimetypes = [
 ]
 
 def main(argv):
+    username = 'Normal User'
     password = ''
     input_file = ''
     output_file = ''
@@ -37,16 +38,18 @@ def main(argv):
         return file_mimetype, file_mime_encoding
 
     def usage():
-        print '\nUsage: jython %s -p <password> -i <inputfile> -o <outputfile>\n' % sys.argv[0]
+        print '\nUsage: jython %s -u <username> -p <password> -i <inputfile> -o <outputfile>\n' % sys.argv[0]
         sys.exit()
 
     try:
-        opts, args = getopt.getopt(argv,"hp:i:o:",["password=","input=","output="])
+        opts, args = getopt.getopt(argv,"hu:p:i:o:",["username=","password=","input=","output="])
     except getopt.GetoptError:
         usage()
     for opt, arg in opts:
         if opt == '-h':
             usage()
+        elif opt in ("-u", "--username"):
+            username = arg
         elif opt in ("-p", "--password"):
             password = arg
         elif opt in ("-i", "--input"):
@@ -78,7 +81,7 @@ def main(argv):
 
         elif mimetype in hssf_supported_mimetypes:
             workbook = HSSFWorkbook(fileIn)
-            workbook.writeProtectWorkbook(password, password)
+            workbook.writeProtectWorkbook(password, username)
 
         workbook.write(fileOut)
         fileIn.close()
