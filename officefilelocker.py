@@ -28,7 +28,7 @@ hssf_supported_mimetypes = [
 ]
 
 def main(argv):
-    username = 'Normal User'
+    username = 'user'
     password = ''
     input_file = ''
     output_file = ''
