@@ -68,17 +68,9 @@ def main(argv):
             worksheets = workbook.getNumberOfSheets()
             for worksheet in range(0,worksheets):
                 sheet = workbook.getSheetAt(worksheet)
-                sheet.lockDeleteColumns()
-                sheet.lockDeleteRows()
-                sheet.lockFormatCells()
-                sheet.lockFormatColumns()
-                sheet.lockFormatRows()
-                sheet.lockInsertColumns()
-                sheet.lockInsertRows()
                 sheet.protectSheet(password)
                 sheet.enableLocking();
             workbook.lockStructure();
-
         elif mimetype in hssf_supported_mimetypes:
             workbook = HSSFWorkbook(fileIn)
             workbook.writeProtectWorkbook(password, username)
