@@ -1,5 +1,5 @@
 #!/usr/bin/env jython
-# This requires Jython and Apache POI
+# Requires Jython and Apache POI
 import os, sys, getopt, ConfigParser, mimetypes
 
 try:
@@ -16,6 +16,10 @@ for root, dirs, files in os.walk(APACHE_POI_JAR_PATH):
 
 from org.apache.poi.xssf.usermodel import *
 from org.apache.poi.hssf.usermodel import *
+from org.apache.poi.hwpf.usermodel import *
+from org.apache.poi.hwpf import HWPFDocument
+from org.apache.poi.xwpf.usermodel import *
+# from org.apache.poi.poifs.crypt import HashAlgorithm
 from java.io import FileInputStream
 from java.io import FileOutputStream
 
@@ -26,6 +30,15 @@ xssf_supported_mimetypes = [
 hssf_supported_mimetypes = [
     "application/vnd.ms-excel"
 ]
+
+xwpf_supported_mimetypes = [
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+]
+
+hwpf_supported_mimetypes = [
+    "application/msword"
+]
+
 
 def main(argv):
     username = 'user'
@@ -71,11 +84,27 @@ def main(argv):
                 sheet.protectSheet(password)
                 sheet.enableLocking();
             workbook.lockStructure();
+            workbook.write(fileOut)
+
         elif mimetype in hssf_supported_mimetypes:
             workbook = HSSFWorkbook(fileIn)
             workbook.writeProtectWorkbook(password, username)
+            workbook.write(fileOut)
 
-        workbook.write(fileOut)
+        elif mimetype in xwpf_supported_mimetypes:
+            worddocument = XWPFDocument(fileIn)
+            # ToDo: Protect the Document with Password
+            # http://poi.apache.org/apidocs/org/apache/poi/xwpf/usermodel/XWPFDocument.html#enforceReadonlyProtection(java.lang.String, org.apache.poi.poifs.crypt.HashAlgorithm)
+            worddocument.enforceReadonlyProtection()
+            worddocument.write(fileOut)
+
+        elif mimetype in hwpf_supported_mimetypes:
+            # ToDo: Convert HWPFDocument to XWPFDocument File Stream
+            # http://poi.apache.org/apidocs/org/apache/poi/hwpf/HWPFDocument.html
+            # worddocument = HWPFDocument(fileIn)
+            # print dir(worddocument)
+            pass
+
         fileIn.close()
 
     else:
