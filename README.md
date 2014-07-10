@@ -11,5 +11,5 @@ Office File Locker (Jython CLI and Apache POI)
 
 Locking an Office File:
 ```bash
-$ jython %s -u <username> -p <password> -i <inputfile> -o <outputfile>
+$ jython officefilelocker.py -u <username> -p <password> -i <inputfile> -o <outputfile>
 ```
