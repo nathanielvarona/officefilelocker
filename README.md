@@ -1,7 +1,7 @@
 officefilelocker
 ================
 
-A Jython CLI Script that Lock/Protect/Encrypt Office Documents.
+officefilelocker - is a Jython CLI Tool enables you to protect Office File Documents from tampering.
 
 ### Dependencies
  - [Jython CLI](http://www.jython.org/) - Python for the Java Platform
