@@ -59,7 +59,7 @@ def main(argv):
     except getopt.GetoptError:
         usage()
     for opt, arg in opts:
-        if opt == '-h':
+        if opt in ("-h", "--help"):
             usage()
         elif opt in ("-u", "--username"):
             username = arg
