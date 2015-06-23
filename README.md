@@ -11,7 +11,7 @@ officefilelocker - is a Jython CLI Tool enables you to protect Office File Docum
 
 Locking an Office File:
 ```bash
-$ jython officefilelocker -u <username> -p <password> -i <inputfile> -o <outputfile>
+$ jython officefilelocker.py -u <username> -p <password> -i <inputfile> -o <outputfile>
 ```
 
 ### License
