@@ -1,7 +1,7 @@
 officefilelocker
 ================
 
-Jython CLI Tool enables you to protect Office File Documents from tampering.
+A Jython CLI Tool enables you to protect Office File Documents from tampering.
 
 ### Dependencies
  - [Jython CLI](http://www.jython.org/) - Python for the Java Platform
