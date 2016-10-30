@@ -4,36 +4,37 @@ officefilelocker
 A Jython CLI Tool enables you to protect Office File Documents from tampering.
 
 ### Dependencies
+ - [Java RE](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) - Java Runtime Engine
  - [Jython CLI](http://www.jython.org/) - Python for the Java Platform
  - [Apache POI](http://poi.apache.org/) -  Java API for Microsoft Documents
+
+### Configuration
+
+Copy the template config and add the Apache POI library to path
+
+```bash
+cp apache.cfg.example apache.cfg
+# [POI]
+# path: ~/packages/apache/poi
+```
+### Jython Evironment with pyenv
+
+Consider using pyenv to isolate your jython environment
+
+```bash
+pyenv install jython-2.7.0
+pyens shell jython-2.7.0
+jython --version
+```
 
 ### Usage
 
 Locking an Office File:
+
 ```bash
-$ jython officefilelocker.py -u <username> -p <password> -i <inputfile> -o <outputfile>
+jython officefilelocker.py -u <username> -p <password> -i <inputfile> -o <outputfile>
 ```
 
 ### License
 
-The MIT License (MIT)
-
-Copyright (c) 2014 Nathaniel Varona
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+[MIT](https://github.com/nathanielvarona/officefilelocker/blob/master/LICENSE)
