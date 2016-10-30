@@ -1,5 +1,4 @@
 #!/usr/bin/env jython
-# Requires Jython and Apache POI
 import os, sys, getopt, ConfigParser, mimetypes
 
 try:
@@ -19,7 +18,6 @@ from org.apache.poi.hssf.usermodel import *
 from org.apache.poi.hwpf.usermodel import *
 from org.apache.poi.hwpf import HWPFDocument
 from org.apache.poi.xwpf.usermodel import *
-# from org.apache.poi.poifs.crypt import HashAlgorithm
 from java.io import FileInputStream
 from java.io import FileOutputStream
 
@@ -72,7 +70,6 @@ def main(argv):
 
     if password and input_file and output_file:
         mimetype = get_mimetype(input_file)[0]
-        # print "Office File MimeType: %s" % mimetype
         fileIn = FileInputStream(input_file)
         fileOut = FileOutputStream(output_file)
 
@@ -93,16 +90,12 @@ def main(argv):
 
         elif mimetype in xwpf_supported_mimetypes:
             worddocument = XWPFDocument(fileIn)
-            # ToDo: Protect the Document with Password
-            # http://poi.apache.org/apidocs/org/apache/poi/xwpf/usermodel/XWPFDocument.html#enforceReadonlyProtection(java.lang.String, org.apache.poi.poifs.crypt.HashAlgorithm)
+            # Todo #1
             worddocument.enforceReadonlyProtection()
             worddocument.write(fileOut)
 
         elif mimetype in hwpf_supported_mimetypes:
-            # ToDo: Convert HWPFDocument to XWPFDocument File Stream
-            # http://poi.apache.org/apidocs/org/apache/poi/hwpf/HWPFDocument.html
-            # worddocument = HWPFDocument(fileIn)
-            # print dir(worddocument)
+            # Todo #2
             pass
 
         fileIn.close()
